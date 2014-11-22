@@ -21,21 +21,11 @@ function getUserHome() {
 
 var home = process.env.INSIGHT_DB || (getUserHome() + '/.insight');
 
-if (process.env.INSIGHT_NETWORK === 'livenet') {
-  env = 'livenet';
-  db = home;
-  port = '3000';
-  b_port = '8332';
-  p2p_port = '8333';
-} else {
-  env = 'testnet';
-  db = home + '/testnet';
-  port = '3001';
-  b_port = '18332';
-  p2p_port = '18333';
-}
-port = parseInt(process.env.INSIGHT_PORT) || port;
-
+env = 'livenet';
+db = home;
+port = '80';
+b_port = '9113';
+p2p_port = '9114';
 
 switch (process.env.NODE_ENV) {
   case 'production':
@@ -49,16 +39,16 @@ switch (process.env.NODE_ENV) {
     break;
 }
 
-var network = process.env.INSIGHT_NETWORK || 'testnet';
+var network = 'livenet';
 
 var dataDir = process.env.BITCOIND_DATADIR;
 var isWin = /^win/.test(process.platform);
 var isMac = /^darwin/.test(process.platform);
 var isLinux = /^linux/.test(process.platform);
 if (!dataDir) {
-  if (isWin) dataDir = '%APPDATA%\\Bitcoin\\';
-  if (isMac) dataDir = process.env.HOME + '/Library/Application Support/Bitcoin/';
-  if (isLinux) dataDir = process.env.HOME + '/.bitcoin/';
+  if (isWin) dataDir = '%APPDATA%\\Bollywoodcoin\\';
+  if (isMac) dataDir = process.env.HOME + '/Library/Application Support/Bollywoodcoin/';
+  if (isLinux) dataDir = process.env.HOME + '/.bollywoodcoin/';
 }
 dataDir += network === 'testnet' ? 'testnet3' : '';
 
